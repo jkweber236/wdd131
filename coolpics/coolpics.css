@@ -42,10 +42,13 @@ button {
    margin-top: 1rem;
 }
 
+nav {
+   padding-bottom: 1rem;
+}
+
 nav ul {
    list-style: none;
    padding: 0;
-   padding-bottom: 1rem;
    margin: 0;
 }
 
@@ -103,6 +106,10 @@ footer p {
       grid-template-columns: 1fr 1fr;
    }
 
+   nav ul {
+      display: none;
+   }
+
 }
 
 @media screen and (min-width: 1000px) {
@@ -118,14 +125,16 @@ footer p {
       display: flex;
       flex-direction: row;
       justify-content:space-evenly;
-      padding: 1rem 3rem;
+      padding: 1rem 3.5rem;
    }
 
    .gallery {
-      grid-template-columns: 1fr 1fr 1fr;
-      width: 85%;
-      margin: auto;
-      margin-bottom: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 10px;
+      justify-content: center;
+      max-width: 900px;
+      margin: 0 auto 1.5rem;
    }
 
    figure {
