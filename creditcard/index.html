@@ -28,15 +28,15 @@
          </div>
          <div class="expiration">
             <label for="exp-month">Expiration</label><br>
-            <input type="text" id="exp-month" name="exp-month" placeholder="MM" maxlength="2" required>
-            <input type="text" id="exp-year" name="exp-year" placeholder="YY" maxlength="2" required>
+            <input type="text" id="exp-month" name="exp-month" placeholder="MM" maxlength="2" pattern="\d{2}" required>
+            <input type="text" id="exp-year" name="exp-year" placeholder="YY" maxlength="2" pattern="\d{2}" required>
          </div>
       </div>
       <div class="card-back">
          <div class="swipe-bar"></div>
          <div class="cvc-cvv-code">
             <label for="cvc-cvv">CVC/CVV</label><br>
-            <input type="text" name="cvc-cvv" id="cvc-cvv" placeholder="XXX" required>
+            <input type="text" name="cvc-cvv" id="cvc-cvv" placeholder="XXX" minlength="3" maxlength="4" pattern="\d{3,4}" required>
          </div>
       </div>
       <button type="submit">Submit</button>
