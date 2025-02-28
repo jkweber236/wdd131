@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
    const form = document.querySelector("form");
 
    const addButton = document.querySelector("#add");
-   const participantsFieldset = document.querySelector(".participants");
 
    addButton.addEventListener("click", () => {
       participantCount++;
