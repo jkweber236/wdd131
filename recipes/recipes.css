@@ -9,7 +9,7 @@
 --secondary-font: Arial, Helvetica,sans-serif;
 }
 
-main {
+main, footer {
    font-family: var(--secondary-font);
    color: var(--text-dark);
 }
