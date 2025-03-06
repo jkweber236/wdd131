@@ -5,8 +5,16 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Recipe Book</title>
    <meta name="author" content="Jennifer Weber">
-   <meta name="description" content="Creating a recipe book site to practice 
+   <meta name="description" content="A recipe book site used to practice 
    good SEO, accessibility, and flexbox for WDD131.">
+
+   <meta property="og:title" content="Recipe Book">
+   <meta property="og:type" content="website">
+   <meta property="og:description" content="A recipe book site used to 
+   practice good SEO, accessibility, and flexbox for WDD131.">
+   <meta property="og:image" content="images/apple-crisp.jpg">
+   <meta property="og:url" content="">
+   <meta name="twitter:card" content="summary_large_image">
 
    <link rel="icon" type="image/x-icon" href="images/favicon.png">
    <link rel="stylesheet" href="recipes.css">
@@ -19,18 +27,40 @@
    </header>
    <main>
       <form>
-         <label for="search">Find a Recipe!</label>
-         <input type="text" name="search" id="search">
+         <input type="text" name="search" id="search" placeholder="Find a recipe!" aria-label="Find a recipe">
+         <button type="submit">
+            <img src="images/search.svg" alt="Search icon">
+         </button>
       </form>
+
+      <div class="recipe-card">
+         <img src="images/apple-crisp.jpg" alt="Apple Crisp">
+         <div class="tags">
+            <p>dessert</p>
+         </div>
+         <h2>Apple Crisp</h2>
+         <span
+            class="rating"
+            role="img"
+            aria-label="Rating: 4 out of 5 stars"
+         >
+            <span aria-hidden="true" class="icon-star">⭐</span>
+            <span aria-hidden="true" class="icon-star">⭐</span>
+            <span aria-hidden="true" class="icon-star">⭐</span>
+            <span aria-hidden="true" class="icon-star-empty">⭐</span>
+            <span aria-hidden="true" class="icon-star-empty">☆</span>
+         </span>
+         <p class="description">This apple crisp recipe is a simple yet delicious fall dessert that's great served warm with vanilla ice cream.</p>
+      </div>
    </main>
    <footer>
-      <a href="https://www.flaticon.com/free-icons/recipe" title="recipe icons">Recipe icons created by Freepik - Flaticon</a>
       <div class="social">
          <!-- Social media icons provided under CC from https://www.iconfinder.com/AlfredoCreates  -->
          <a href="#"><img src="images/instagram_icon.svg" alt="instagram icon"></a>
          <a href="#"><img src="images/youtube_icon.svg" alt="youtube icon"></a>
          <a href="#"><img src="images/pinterest_icon.svg" alt="pinterest icon"></a>
       </div>
+      <a id="attribution" href="https://www.flaticon.com/free-icons/recipe" title="recipe icons">Recipe icons created by Freepik - Flaticon</a>
    </footer>
 </body>
 </html>
