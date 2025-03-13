@@ -75,7 +75,6 @@ function filterRecipes(query) {
       recipe.tags.find(tag => tag.toLowerCase().includes(query)) ||
       recipe.recipeIngredient.find(ingredient => ingredient.toLowerCase().includes(query))
    )
-   .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 const searchForm = document.querySelector("form");
@@ -85,5 +84,6 @@ searchForm.addEventListener("submit", function(event) {
    event.preventDefault();
    const searchInput = userSearch.value.trim().toLowerCase();
    const filteredRecipes = filterRecipes(searchInput);
-   renderRecipes(filteredRecipes);
+   const sortedRecipes = filteredRecipes.sort((a, b) => a.name.localeCompare(b.name));
+   renderRecipes(sortedRecipes);
 });
