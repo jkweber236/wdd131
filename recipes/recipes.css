@@ -85,10 +85,12 @@ form img {
 }
 
 .tags p {
-   display: block;
+   display: flex;
+   justify-content: center;
+   align-items: center;
    border: 1px solid black;
    padding: 4px 0;
-   width: 5.5rem;
+   width: 5.75rem;
    text-align: center;
    margin: 0;
    font-size: 1.15rem;
@@ -152,10 +154,6 @@ h2 {
    h2 {
       margin-top: 1.25rem;
       align-self: end;
-   }
-
-   .tags p {
-      margin: auto 0;
    }
 
    p.description {
