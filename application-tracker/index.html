@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Application Tracker</title>
+
+   <link rel="stylesheet" href="styles/application-tracker.css">
+   <script src="tracker.js" defer></script>
+</head>
+<body>
+   <header>
+      <img class="logo" src="images/logo.png" alt="Logo">
+      <h1>Application Tracker</h1>
+      <nav>
+         <a href="#">Home</a>
+         <a href="my-applications.html">My Applications</a>
+      </nav>
+   </header>
+   <main>
+      <div class="title-icon">
+         <h2>Add Your Job Applications</h2>
+         <img class="application-img" src="images/application.png" alt="Job Application">
+      </div>
+      <p>Add a new job application by entering details such as company name, application
+         status, interest level, etc. Once submitted, your applications will be stored and can 
+         be managed from the 
+         <a href="my-applications.html">My Applications</a> 
+         page.
+      </p>
+      <form class="add-application">
+         <fieldset>
+            <legend>Add Application</legend>
+            <label for="company">Company</label><br>
+            <input type="text" name="company" id="company"><br>
+
+            <label for="status">Status</label><br>
+            <select id="status" name="status">
+               <option value="Accepted">Accepted</option>
+               <option value="Pending">Pending</option>
+               <option value="Rejected">Rejected</option>
+            </select><br>
+
+            <label for="interest">Interest</label><br>
+            <select id="interest" name="interest">
+               <option value="High">High</option>
+               <option value="Medium">Medium</option>
+               <option value="Low">Low</option>
+            </select><br>
+
+            <label for="application-date">Application Date</label><br>
+            <input type="date" name="application-date" id="application-date"><br>
+
+            <label for="application-link">Application Link</label><br>
+            <input type="url" name="application-link" id="application-link"><br>
+
+            <label for="additional-details">Additional Details</label><br>
+            <textarea name="additional-details" id="additional-details"></textarea><br>
+
+            <button type="submit">Submit</button>
+      </fieldset>
+      </form>
+   </main>
+   <footer>
+      <a id="attribution" href="https://www.flaticon.com/icons" title="icons">All icons were created by Freepik - Flaticon</a>
+   </footer>
+</body>
+</html>
