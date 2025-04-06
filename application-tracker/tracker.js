@@ -22,8 +22,6 @@ document.addEventListener("DOMContentLoaded", function() {
             details: details
          };
 
-         let applications = JSON.parse(localStorage.getItem("applications")) || [];
-
          applications.push(formData);
 
          localStorage.setItem("applications", JSON.stringify(applications));
@@ -41,68 +39,108 @@ function displayApplications() {
       applications.forEach((application, index) => {
          list.innerHTML += applicationTemplate(application, index);
       });
-
-      document.querySelectorAll(".edit-button").forEach((button, index) => {
-         button.onclick = () => editApplication(index);
-      })
-
-      document.querySelectorAll(".delete-button").forEach((button, index) => {
-         button.onclick = () => deleteApplication(index);
-      })
-
-      document.querySelectorAll(".details-dropdown").forEach(button => {
-         button.addEventListener("click", function() {
-            const moreDetails = this.nextElementSibling;
-            if (moreDetails.style.display === "none") {
-               moreDetails.style.display = "block";
-            } else {
-               moreDetails.style.display = "none";
-            }
-         });
-      });
    }
 }
+
+document.querySelectorAll(".edit-button").forEach((button, index) => {
+   button.onclick = () => editApplication(index);
+});
+
+document.querySelectorAll(".delete-button").forEach((button, index) => {
+   button.onclick = () => deleteApplication(index);
+});
+
+document.querySelectorAll(".details-dropdown").forEach(button => {
+   button.addEventListener("click", function () {
+      const moreDetails = this.nextElementSibling;
+      if (moreDetails.style.display === "none") {
+         moreDetails.style.display = "block";
+      } else {
+         moreDetails.style.display = "none";
+      }
+   });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+   const list = document.getElementById("application-list");
+
+   if (list) {
+      list.addEventListener("click", (event) => {
+         const editButton = event.target.closest(".edit-button");
+         const deleteButton = event.target.closest(".delete-button");
+         const dropdownButton = event.target.closest(".details-dropdown");
+
+         if (editButton) {
+            const index = editButton.dataset.index;
+            editApplication(Number(index));
+         }
+
+         if (deleteButton) {
+            const index = deleteButton.dataset.index;
+            deleteApplication(Number(index));
+         }
+
+         if (dropdownButton) {
+            const moreDetails = dropdownButton.closest('.application-card').querySelector('.more-details');
+            moreDetails.style.display = (moreDetails.style.display === "none" ? "block" : "none");
+         }
+      });
+   }
+});
 
 function applicationTemplate(application, index) {
 
    const screenWidth = window.innerWidth;
    let content;
+   let interestColorClass = ''; 
+
+   if (application.interest === "High") {
+      interestColorClass = "high-interest";
+   } else if (application.interest === "Medium") {
+      interestColorClass = "medium-interest";
+   } else if (application.interest === "Low") {
+      interestColorClass = "low-interest";
+   }
 
    if (screenWidth >= 800) {
       content = `
-         <p class="interest">${application.interest}</p>
+         <p class="interest ${interestColorClass}">${application.interest}</p>
          <p class="company-name">${application.company}</p>
          <p>${application.status}</p>
       `;
    } else {
       content = `
          <p class="company-name">Company: ${application.company}</p>
-         <p class="interest">Interest: ${application.interest}</p>
+         <p class="interest ${interestColorClass}">Interest: ${application.interest}</p>
          <p>Status: ${application.status}</p>
       `;
    }
 
    return `
-      <div class="application-card">
-         ${content}
-         <button type="button" class="delete-button">
-            <img src="images/delete.png" alt="Delete button">
-         </button>
-         <button type="button" class="edit-button" data-index="${index}">
-            <img src="images/edit.png" alt="Edit button">
-         </button>
-         <button type="button" class="details-dropdown">
-            <img src="images/drop-down-arrow.png">
-         </button>
-         <div class="more-details" style="display: none;">
-            <p>Application Date</p>
-            <p>${application.date}</p>
-            <p>Application Link</p>
-            <p>${application.applicationLink}</p>
-            <p>Additional Details</p>
-            <p>${application.details}</p>
+      <li class="application-item">
+         <div class="application-card">
+            <div class="main-details">
+               ${content}
+               <button type="button" class="delete-button" data-index="${index}">
+                  <img src="images/delete.png" alt="Delete button">
+               </button>
+               <button type="button" class="edit-button" data-index="${index}">
+                  <img src="images/edit.png" alt="Edit button">
+               </button>
+               <button type="button" class="details-dropdown">
+                  <img src="images/drop-down-arrow.png" alt="Drop down button">
+               </button>
+            </div>
+            <div class="more-details" style="display: none;">
+               <p class="detail-title">Application Date</p>
+               <p>${application.date}</p>
+               <p class="detail-title">Application Link</p>
+               <p>${application.applicationLink}</p>
+               <p class="detail-title">Additional Details</p>
+               <p>${application.details}</p>
+            </div>
          </div>
-      </div>
+      </li>
    `;
 }
 
@@ -119,8 +157,6 @@ function updateDisplay() {
 }
 
 window.addEventListener("resize", updateDisplay);
-
-// updateDisplay();
 
 function editApplication(index) {
    const application = applications[index];
@@ -162,7 +198,10 @@ function editApplication(index) {
          </fieldset>
       `
 
-      document.body.appendChild(editForm);
+      const list = document.getElementById("application-list");
+      if (list) {
+         list.insertAdjacentElement('beforebegin', editForm); 
+      }
    }
 
    document.getElementById("edit-company").value = application.company;
@@ -225,12 +264,14 @@ function filterApplications(query) {
 const searchForm = document.querySelector(".search-form");
 const userSearch = document.querySelector("#search");
 
-searchForm.addEventListener("submit", function(event) {
-   event.preventDefault();
-   const searchInput = userSearch.value.trim().toLowerCase();
-   const filteredApplications = filterApplications(searchInput);
-   const sortedApplications = filteredApplications.sort((a, b) => a.company.localeCompare(b.company));
-   renderApplications(sortedApplications);
-});
+if (searchForm) {
+   searchForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      const searchInput = userSearch.value.trim().toLowerCase();
+      const filteredApplications = filterApplications(searchInput);
+      const sortedApplications = filteredApplications.sort((a, b) => a.company.localeCompare(b.company));
+      renderApplications(sortedApplications);
+   });
+}
 
 displayApplications();

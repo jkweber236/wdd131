@@ -4,6 +4,9 @@
 --primary-color: #0b3c3d;
 --secondary-color: #56acad;
 --accent1: #bababa;
+--high-interest: rgba(55, 223, 119, 0.7);
+--medium-interest: rgba(250, 241, 109, 0.7);
+--low-interest: rgba(242, 84, 91, 0.6);
 --heading-font: "Quicksand", "Lato", Helvetica, sans-serif;
 --paragraph-font: "Barlow", "Lato", Helvetica, sans-serif;
 }
@@ -13,17 +16,14 @@ body {
 }
 
 h1 {
-   /* margin: 0 2rem 0 3rem; */
    text-align: center;
 }
 header {
    display: grid;
    grid-template-rows: 2fr 1fr;
-   /* grid-template-rows: 1.25fr 1fr; */
    grid-template-columns: 150px auto;
    align-items: center;
    padding-right: 1rem;
-   /* justify-content: space-between; */
    background-color: var(--secondary-color);
 }
 
@@ -42,9 +42,7 @@ h1, h2, h3 {
 nav {
    margin: auto;
    display: flex;
-   /* display: block; */
    justify-content: space-evenly;
-   /* width: 50%; */
    width: 100%;
    margin-top: 0;
 }
@@ -53,7 +51,6 @@ nav a {
    text-align: center;
    display: flex;
    justify-content: space-evenly;
-   /* margin-bottom: 15px; */
 }
 
 a {
@@ -71,7 +68,7 @@ a:hover {
 
 .logo {
    width: 125px;
-   height: auto;
+   height: 125px;
    padding: 0.75rem;
 }
 
@@ -100,8 +97,6 @@ fieldset {
 }
 
 legend {
-   /* background-color: white; */
-   /* border: 1px solid black; */
    padding: 2px;
    font-weight: bold;
    font-size: 1.25rem;
@@ -125,21 +120,20 @@ legend {
 
 .application-card img {
    width: 25px;
-   height: auto;
+   height: 25px;
    display: flex;
    margin: auto;
    translate: 30px;
 }
 
 .application-card button {
-   margin: 0 8px;
+   margin: 0 10px;
 }
 
 .application-card {
    border: 1px solid black;
-   padding: 1rem;
-   margin: 1rem 0;
-   width: 225px;
+   padding: 0.5rem 1rem;
+   width: 250px;
    margin: auto;
 }
 
@@ -152,6 +146,7 @@ legend {
 }
 
 .search-button img {
+   width: 25px;
    height: 25px;
 }
 
@@ -190,10 +185,48 @@ legend {
    margin-top: 0.5rem;
 }
 
+li {
+   list-style-type: none;
+}
+
+.application-item {
+   margin: auto;
+}
+
+.edit-application {
+   margin-bottom: 2rem;
+}
+
+.detail-title {
+   border-bottom: 1px solid black;
+}
+
+
 @media (min-width: 800px) {
    main {
-      width: 600px;
-      min-width: 500px;
+      width: 650px;
+   }
+
+   h1 {
+      margin-left: 2rem;
+   }
+
+   header a {
+      font-size: 1.2rem;
+   }
+   
+   .details-dropdown {
+      grid-column: span 2; 
+      justify-self: end; 
+   }
+
+   .application-card {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+   }
+
+   .application-card .more-details {
+      grid-column: 1/3; 
    }
 
    header {
@@ -207,7 +240,6 @@ legend {
       margin: auto;
       display: flex;
       justify-content: space-evenly;
-      /* width: 50%; */
       width: 45%;
    }
    
@@ -220,12 +252,26 @@ legend {
       color: black;
    }
 
+   li {
+      width: 650px;
+   }
+
    .application-card {
+      display: grid;
+      width: 600px;
+      padding: 0 1rem;
+      background-color: var(--accent1);
+   }
+
+   .main-details {
       display: flex;
+      width: 600px;
       justify-content: space-between;
       align-items: center;
-      width: 575px;
-      min-width: 500px;
+   }
+
+   .application-card button {
+      background-color: var(--accent1);
    }
 
    .more-details {
@@ -239,8 +285,9 @@ legend {
    
    div#section-headers {
       display: flex;
-      width: 300px;
+      width: 328px;
       justify-content: space-between;
+      margin-left: 25px;
    }
 
    .application-card img {
@@ -248,8 +295,26 @@ legend {
    }
 
    .interest {
-      min-width: 50px;
-      max-width: 65px;
+      display: flex;
+      border: 1px solid black;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      width: 65px;
+      height: 30px;
+      padding: 5px;
+   }
+
+   .high-interest {
+      background-color: var(--high-interest);
+   }
+   
+   .medium-interest {
+      background-color: var(--medium-interest);
+   }
+
+   .low-interest {
+      background-color: var(--low-interest);
    }
 
    .company-name {
