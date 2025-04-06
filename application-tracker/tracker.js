@@ -198,7 +198,7 @@ function editApplication(index) {
          </fieldset>
       `
 
-      const list = document.getElementById("application-list");
+      const list = document.getElementById("section-headers");
       if (list) {
          list.insertAdjacentElement('beforebegin', editForm); 
       }
